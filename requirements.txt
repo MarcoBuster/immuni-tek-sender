@@ -1,0 +1,3 @@
+protobuf
+botogram2
+requests~=2.24.0
