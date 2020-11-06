@@ -29,8 +29,10 @@ def send_batch(batch_num):
         f"{_ts_to_human(b.start_timestamp)} - {_ts_to_human(b.end_timestamp)}"
         f"\n🔑 <b>Numero chiavi</b>: {len(b.keys)}"
     )
-    for k in b.keys:
+    for i, k in enumerate(b.keys):
         text += f"\n➖ <code>{base64.b64encode(k.key_data).decode('utf-8')}</code>"
+        if i > 50:
+            text += f"\n<i>(...e altre)</i>"
 
     bot.chat(config.DEST_CHANNEL).send(text, syntax="html")
 
