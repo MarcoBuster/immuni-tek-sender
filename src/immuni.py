@@ -19,6 +19,8 @@ class ImmuniAPI:
 
     def get_batch(self, batch_id):
         compressed_file = self._request(batch_id, raw=True)
+        if b"Batch not found." in compressed_file:
+            return False
         stream = io.BytesIO(compressed_file)
         input_zip = zipfile.ZipFile(stream)
         raw_teke = {name: input_zip.read(name) for name in input_zip.namelist()}['export.bin'][16:]
