@@ -33,6 +33,7 @@ def send_batch(batch_num):
         text += f"\n➖ <code>{base64.b64encode(k.key_data).decode('utf-8')}</code>"
         if i > 50:
             text += f"\n<i>(...e altre)</i>"
+            break
 
     bot.chat(config.DEST_CHANNEL).send(text, syntax="html")
 
